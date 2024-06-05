@@ -1,4 +1,4 @@
-pragma solidity 0.8.4;
+pragma solidity ^0.8.4;
 
 import {IFactory} from "./interfaces/IFactory.sol";
 import {IButtonToken} from "./interfaces/IButtonToken.sol";

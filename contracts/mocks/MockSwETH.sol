@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity 0.8.4;
+pragma solidity ^0.8.4;
 
 contract MockSwETH {
     uint256 public totalSwETH = 10 ** 18;
