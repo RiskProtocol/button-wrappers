@@ -60,7 +60,7 @@ contract UnbuttonToken is IButtonWrapper, ERC20PermitUpgradeable {
         string memory name_,
         string memory symbol_,
         uint256 initialRate
-    ) public initializer virtual {
+    ) public virtual initializer {
         __ERC20_init(name_, symbol_);
         __ERC20Permit_init(name_);
         underlying = underlying_;
@@ -93,21 +93,21 @@ contract UnbuttonToken is IButtonWrapper, ERC20PermitUpgradeable {
     }
 
     /// @inheritdoc IButtonWrapper
-    function burn(uint256 amount) public override virtual returns (uint256) {
+    function burn(uint256 amount) public virtual override returns (uint256) {
         uint256 uAmount = _toUnderlyingAmount(amount, _queryUnderlyingBalance(), totalSupply());
         _withdraw(_msgSender(), _msgSender(), uAmount, amount);
         return uAmount;
     }
 
     /// @inheritdoc IButtonWrapper
-    function burnTo(address to, uint256 amount) public override virtual returns (uint256) {
+    function burnTo(address to, uint256 amount) public virtual override returns (uint256) {
         uint256 uAmount = _toUnderlyingAmount(amount, _queryUnderlyingBalance(), totalSupply());
         _withdraw(_msgSender(), to, uAmount, amount);
         return uAmount;
     }
 
     /// @inheritdoc IButtonWrapper
-    function burnAll() public override virtual returns (uint256) {
+    function burnAll() public virtual override returns (uint256) {
         uint256 amount = balanceOf(_msgSender());
         uint256 uAmount = _toUnderlyingAmount(amount, _queryUnderlyingBalance(), totalSupply());
         _withdraw(_msgSender(), _msgSender(), uAmount, amount);
@@ -115,7 +115,7 @@ contract UnbuttonToken is IButtonWrapper, ERC20PermitUpgradeable {
     }
 
     /// @inheritdoc IButtonWrapper
-    function burnAllTo(address to) public override virtual returns (uint256) {
+    function burnAllTo(address to) public virtual override returns (uint256) {
         uint256 amount = balanceOf(_msgSender());
         uint256 uAmount = _toUnderlyingAmount(amount, _queryUnderlyingBalance(), totalSupply());
         _withdraw(_msgSender(), to, uAmount, amount);
@@ -137,21 +137,21 @@ contract UnbuttonToken is IButtonWrapper, ERC20PermitUpgradeable {
     }
 
     /// @inheritdoc IButtonWrapper
-    function withdraw(uint256 uAmount) public override virtual returns (uint256) {
+    function withdraw(uint256 uAmount) public virtual override returns (uint256) {
         uint256 amount = _fromUnderlyingAmount(uAmount, _queryUnderlyingBalance(), totalSupply());
         _withdraw(_msgSender(), _msgSender(), uAmount, amount);
         return amount;
     }
 
     /// @inheritdoc IButtonWrapper
-    function withdrawTo(address to, uint256 uAmount) public override virtual returns (uint256) {
+    function withdrawTo(address to, uint256 uAmount) public virtual override returns (uint256) {
         uint256 amount = _fromUnderlyingAmount(uAmount, _queryUnderlyingBalance(), totalSupply());
         _withdraw(_msgSender(), to, uAmount, amount);
         return amount;
     }
 
     /// @inheritdoc IButtonWrapper
-    function withdrawAll() public override virtual returns (uint256) {
+    function withdrawAll() public virtual override returns (uint256) {
         uint256 amount = balanceOf(_msgSender());
         uint256 uAmount = _toUnderlyingAmount(amount, _queryUnderlyingBalance(), totalSupply());
         _withdraw(_msgSender(), _msgSender(), uAmount, amount);
@@ -159,7 +159,7 @@ contract UnbuttonToken is IButtonWrapper, ERC20PermitUpgradeable {
     }
 
     /// @inheritdoc IButtonWrapper
-    function withdrawAllTo(address to) public override virtual returns (uint256) {
+    function withdrawAllTo(address to) public virtual override returns (uint256) {
         uint256 amount = balanceOf(_msgSender());
         uint256 uAmount = _toUnderlyingAmount(amount, _queryUnderlyingBalance(), totalSupply());
         _withdraw(_msgSender(), to, uAmount, amount);
